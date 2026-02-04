@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+"""
+Demo script showing example outputs
+This shows what the bot output looks like without needing real API credentials
+"""
+
+print("""
+# Example 1: Market Order
+$ python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
+
+==================================================
+ORDER REQUEST SUMMARY
+==================================================
+Symbol: BTCUSDT
+Side: BUY
+Type: MARKET
+Quantity: 0.001
+==================================================
+
+2024-02-04 10:30:45 - bot.client - INFO - Connected to Binance Futures Testnet
+2024-02-04 10:30:45 - bot.orders - INFO - Placing MARKET order: BUY 0.001 BTCUSDT
+2024-02-04 10:30:46 - bot.orders - INFO - Market order placed successfully: 12345678
+
+==================================================
+ORDER EXECUTED SUCCESSFULLY
+==================================================
+Order ID: 12345678
+Symbol: BTCUSDT
+Side: BUY
+Type: MARKET
+Status: FILLED
+Quantity: 0.001
+Executed Qty: 0.001
+Average Price: 96234.50
+==================================================
+
+✅ SUCCESS: Order placed successfully!
+
+================================================================================
+
+# Example 2: Limit Order
+$ python cli.py --symbol ETHUSDT --side SELL --type LIMIT --quantity 0.01 --price 3500
+
+==================================================
+ORDER REQUEST SUMMARY
+==================================================
+Symbol: ETHUSDT
+Side: SELL
+Type: LIMIT
+Quantity: 0.01
+Price: 3500
+==================================================
+
+2024-02-04 10:32:15 - bot.client - INFO - Connected to Binance Futures Testnet
+2024-02-04 10:32:15 - bot.orders - INFO - Placing LIMIT order: SELL 0.01 ETHUSDT @ 3500
+2024-02-04 10:32:16 - bot.orders - INFO - Limit order placed successfully: 87654321
+
+==================================================
+ORDER EXECUTED SUCCESSFULLY
+==================================================
+Order ID: 87654321
+Symbol: ETHUSDT
+Side: SELL
+Type: LIMIT
+Status: NEW
+Quantity: 0.01
+Executed Qty: 0
+Limit Price: 3500
+==================================================
+
+✅ SUCCESS: Order placed successfully!
+
+================================================================================
+
+# Example 3: Error - Missing price for limit order
+$ python cli.py --symbol BTCUSDT --side BUY --type LIMIT --quantity 0.001
+
+❌ VALIDATION ERROR: Price is required for LIMIT orders
+
+================================================================================
+
+# Example 4: Error - Invalid symbol
+$ python cli.py --symbol INVALID --side BUY --type MARKET --quantity 0.001
+
+2024-02-04 10:35:20 - bot.validators - WARNING - Symbol INVALID doesn't end with USDT
+2024-02-04 10:35:21 - bot.orders - ERROR - Binance API error: Invalid symbol
+❌ ERROR: Invalid symbol
+
+""")
